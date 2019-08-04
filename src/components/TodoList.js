@@ -1,7 +1,9 @@
 import React from "react";
+import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 
-const TodoList = ({ todos }) => {
+const TodoList = (props) => {
+    let todos = props.goal;
     let todo;
     todos.length === 0
         ? (todo = <h5>There are no tasks. Add a new one now!</h5>)
@@ -24,4 +26,10 @@ const TodoList = ({ todos }) => {
         </div>
     );
 };
-export default TodoList;
+
+const mapStateToProps = state => {
+    return {
+        todo: state.todos
+    }
+}
+export default connect(mapStateToProps)(TodoList);
