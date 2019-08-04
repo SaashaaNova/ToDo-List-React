@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
+import {createTodoAction} from "../store/actions/createTodo";
 
 class Form extends Component {
 
@@ -37,4 +39,10 @@ render(){
   )
  }
 }
-export default Form
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createTodo: (todo) => {dispatch(createTodoAction(todo))}
+  }
+}
+export default connect(null, mapDispatchToProps)(Form)
