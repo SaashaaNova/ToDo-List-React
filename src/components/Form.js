@@ -13,10 +13,8 @@ class Form extends Component {
 
     getTodo = e => {
         e.preventDefault();
-        if (this.state.todo !== "") {
-            this.props.addATodo(this.state);
-            this.setState({ todo: "" });
-        }
+        this.props.createTodo(this.state);
+        this.setState({ todo: "" });
     };
 
     render() {
@@ -42,11 +40,10 @@ class Form extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createTodo: todo => {
-            dispatch(createTodoAction(todo));
-        }
+        createTodo: todo => dispatch(createTodoAction(todo))
     };
 };
+
 export default connect(
     null,
     mapDispatchToProps

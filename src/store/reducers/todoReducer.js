@@ -3,7 +3,7 @@ let todos = [
     { id: 2, todo: "Buy milk" }
 ];
 
-const createTodo = (state = todos, action) => {
+const todoReducer = (state = todos, action) => {
     const { todo } = action;
     switch (action.type) {
         case "CREATE_TODO":
@@ -12,4 +12,4 @@ const createTodo = (state = todos, action) => {
             return state;
     }
 };
-export default createTodo;
+export default todoReducer;
