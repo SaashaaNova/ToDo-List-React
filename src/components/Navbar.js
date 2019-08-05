@@ -7,7 +7,7 @@ class Navbar extends Component {
                 <nav>
                     <div className="">
                         <div className="container">
-                            <a>Todo List with React&Redux&Firebase</a>
+                            <a>Todo List with React Redux Firebase</a>
                         </div>
                     </div>
                 </nav>

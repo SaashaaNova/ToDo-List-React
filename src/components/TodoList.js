@@ -2,32 +2,33 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const TodoList = props => {
-    let todos = props.goal;
-    let todo;
-    todos.length === 0
-        ? (todo = <h5>There are no tasks. Add a new one now!</h5>)
-        : (todo = todos.map(todo => {
-              return (
-                  <li lassName="collection-item" key={todo.id}>
-                      {todo.todo}
-                      <Link to="/">
-                          <i>edit</i>
-                      </Link>
-                      <Link to="/">
-                          <i>delete</i>
-                      </Link>
-                  </li>
-              );
-          }));
+const TodoList = (props) => {
+    const {todo} = props
+    let todos;
+    if(todo) {
+        todos = todo.map(todo => {
+            return (
+                <li key={todo.id}>
+                    {todo.todo}
+                    <Link to="/">
+                        <i>edit</i>
+                    </Link>
+                    <Link to="/">
+                        <i>delete</i>
+                    </Link>
+                </li>
+            );
+        });
+    } 
     return (
         <div>
-            <ul>{todo}</ul>
+            <ul>{todos}</ul>
         </div>
     );
 };
 
 const mapStateToProps = state => {
+    console.log(state);
     return {
         todo: state.todos
     };
