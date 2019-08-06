@@ -1,6 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
+library.add(
+    faEdit, 
+    faTrashAlt 
+);
 
 const TodoList = (props) => {
     const {todo} = props
@@ -11,10 +20,10 @@ const TodoList = (props) => {
                 <li key={todo.id}>
                     {todo.todo}
                     <Link to="/">
-                        <i>edit</i>
+                        <FontAwesomeIcon icon='edit' />
                     </Link>
                     <Link to="/">
-                        <i>delete</i>
+                        <FontAwesomeIcon icon='trash-alt' />
                     </Link>
                 </li>
             );
