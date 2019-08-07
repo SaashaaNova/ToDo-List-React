@@ -15,7 +15,7 @@ const TodoForm = styled.form`
 `;
 
 const Input = styled.input`
-    width: 70%;
+    width: 50%;
     height: 4rem;
     background: none;
     border: none;
@@ -32,12 +32,16 @@ const Input = styled.input`
 
 const Button = styled.button`
     margin-top: 3rem;
-    width: 10rem;
+    width: 13rem;
     height: 5rem;
     border-radius: 50px;
     background: orangered;
     font-size: 1.8rem;
     font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border: none;
 `;
 
 class Form extends Component {
