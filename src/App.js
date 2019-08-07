@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import styled, { createGlobalStyle  } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 
@@ -15,10 +15,10 @@ const GlobalStyles = createGlobalStyle`
             @import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
             font-family: 'Red Hat Display', sans-serif;
         }
-`
+`;
 
 const AppWraper = styled.div`
-    width:100vw;
+    width: 100vw;
     height: 100vh;
     background: #f0f5f9;
 `;
@@ -28,7 +28,6 @@ function App() {
         <div className="App">
             <GlobalStyles />
             <BrowserRouter>
-        
                 <AppWraper>
                     <Navbar />
                     <Switch>
