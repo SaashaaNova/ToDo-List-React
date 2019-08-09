@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
+import singleTodo from "./components/Atodo";
 
 const GlobalStyles = createGlobalStyle`
         * {
@@ -32,6 +33,7 @@ function App() {
                     <Navbar />
                     <Switch>
                         <Route path="/" component={Dashboard} />
+                        <Route path="/:id" component={singleTodo} />
                     </Switch>
                 </AppWraper>
             </BrowserRouter>

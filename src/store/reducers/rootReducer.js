@@ -1,7 +1,10 @@
 import { combineReducers } from "redux";
-import todoReducer from "./todoReducer";
+import getTodo from "./todoReducer";
+import { firestoreReducer } from 'redux-firestore'
 
 const rootReducer = combineReducers({
-    todos: todoReducer
-});
-export default rootReducer;
+    firestoreGoals: firestoreReducer,
+    getTodo: getTodo
+   })
+
+   export default rootReducer
