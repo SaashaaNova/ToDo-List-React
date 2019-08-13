@@ -1,12 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createTodoAction } from "../store/actions/createTodo";
+import React from "react";
 import styled from "styled-components";
-
-const FormWrapper = styled.div`
-    width: 100%;
-    margin-top: 7rem;
-`;
 
 const TodoForm = styled.form`
     display: flex;
@@ -44,46 +37,17 @@ const Button = styled.button`
     border: none;
 `;
 
-class Form extends Component {
-    state = {
-        todo: ""
-    };
-
-    handleChange = e => {
-        this.setState({ todo: e.target.value });
-    };
-
-    getTodo = e => {
-        e.preventDefault();
-        this.props.createTodo(this.state);
-        this.setState({ todo: "" });
-    };
-
-    render() {
-        return (
-            <FormWrapper>
-                <TodoForm onSubmit={this.getTodo}>
-                    <Input
-                        type="text"
-                        onChange={this.handleChange}
-                        value={this.state.todo}
-                        required
-                        placeholder="add new todo"
-                    />
-                    <Button>Add Todo</Button>
-                </TodoForm>
-            </FormWrapper>
-        );
-    }
+export default function Form(props) {
+    return (
+        <TodoForm onSubmit={props.formAction}>
+            <Input
+                type="text"
+                onChange={e => { props.handleChange(e.target.value) } }
+                value={props.value}
+                required
+                placeholder="add new todo"
+            />
+            <Button onClick={props.formAction}> {props.btnName}</Button>
+        </TodoForm>
+    );
 }
-
-const mapDispatchToProps = dispatch => {
-    return {
-        createTodo: todo => dispatch(createTodoAction(todo))
-    };
-};
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(Form);

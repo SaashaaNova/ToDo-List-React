@@ -4,7 +4,7 @@ export const createTodoAction = todo => {
         firestore
             .collection("todos")
             .add({
-                ...goal
+                ...todo
             })
             .then(() => {
                 dipatch({ type: "CREATE_TODO", todo });

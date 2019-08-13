@@ -1,7 +1,14 @@
 import React from "react";
-import Form from "./form";
+import Form from "./CreateTodoForm";
 import { connect } from "react-redux";
+import Form from "./form";
 import { getATodo, updateTodo } from "../store/actions/createTodo";
+import styled from "styled-components";
+
+const FormWrapper = styled.div`
+    width: 100%;
+    margin-top: 7rem;
+`;
 
 class singleTodo extends React.Component {
     state = {
@@ -35,14 +42,14 @@ class singleTodo extends React.Component {
             <div>
                 <div className="center">
                     <h4>Change todo</h4>
-                    <div className="container">
-                        <Form
-                            value={this.state.todo}
-                            btnName={`Update todo`}
-                            handleChange={this.handleChange}
-                            formAction={this.updateTodo}
-                        />
-                    </div>
+                    <FormWrapper>
+                        <Form 
+							value={this.state.todo}
+							btnName={`Update Todo`}
+							handleChange={this.handleChange}
+							formAction={this.updateTodo}
+						/>
+                     </FormWrapper>
                 </div>
             </div>
         );

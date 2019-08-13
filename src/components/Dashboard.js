@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
-import Form from "./Form";
+import CreateTodoForm from "./CreateTodoForm";
 
 class Dashboard extends Component {
 
@@ -8,7 +8,7 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <Form />
+                <CreateTodoForm />
                 <TodoList />
             </div>
         );
