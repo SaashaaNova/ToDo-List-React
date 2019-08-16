@@ -3,7 +3,7 @@ import getTodo from "./todoReducer";
 import { firestoreReducer } from 'redux-firestore'
 
 const rootReducer = combineReducers({
-    firestoreGoals: firestoreReducer,
+    firestoreTodos: firestoreReducer,
     getTodo: getTodo
    })
 

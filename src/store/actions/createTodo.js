@@ -15,7 +15,7 @@ export const createTodoAction = todo => {
     };
 };
 
-export const deleteGoal = id => {
+export const deleteTodo = id => {
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         firestore
