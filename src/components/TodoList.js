@@ -1,23 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { compose } from "redux";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { deleteTodo, getATodo } from "../store/actions/createTodo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { firestoreConnect } from "react-redux-firebase";
 
-library.add(
-    faEdit, 
-    faTrashAlt 
-);
+library.add(faEdit, faTrashAlt);
 
 const TodoListWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 6rem;
-`
+`;
 
 const Todo = styled.li`
     list-style: none;
@@ -36,43 +36,71 @@ const Todo = styled.li`
         color: slateblue;
     }
 
-    .trash{
+    .trash {
         position: absolute;
         right: 15px;
         color: slateblue;
     }
+`;
+const Loading = styled.h4`
+    font-size: 1.8rem;
+    margin-top: 2rem;
+`;
 
-`
-
-const TodoList = (props) => {
-    const {todo} = props
+const TodoList = props => {
+    console.log("props", props);
+    const { todo, deleteTodo, getATodo } = props;
     let todos;
-    if(todo) {
+    if (todo) {
         todos = todo.map(todo => {
             return (
                 <Todo key={todo.id}>
                     {todo.todo}
-                    <Link className='edit' to="/">
-                        <FontAwesomeIcon icon='edit' />
+                    <Link
+                        className="edit"
+                        to="/"
+                        onClick={() => deleteTodo(todo.id)}
+                    >
+                        <FontAwesomeIcon icon="edit" />
                     </Link>
-                    <Link className='trash' to="/">
-                        <FontAwesomeIcon icon='trash-alt' />
+                    <Link className="trash" to={`${todo.id}`}>
+                        <FontAwesomeIcon icon="trash-alt" />
                     </Link>
                 </Todo>
             );
         });
-    } 
+    } else {
+        todos = <Loading>Loading...</Loading>;
+    }
     return (
         <TodoListWrapper>
-            <ul className='todo-list'>{todos}</ul>
+            <ul className="todo-list">{todos}</ul>
         </TodoListWrapper>
     );
 };
 
-const mapStateToProps = state => {
-    console.log(state);
+const mapDispatchToProps = dispatch => {
     return {
-        todo: state.todos
+        deleteTodo: id => {
+            dispatch(deleteTodo(id));
+        },
+        getATodo: id => {
+            dispatch(getATodo(id));
+        }
     };
 };
-export default connect(mapStateToProps)(TodoList);
+
+const mapStateToProps = state => {
+    console.log("state", state);
+    return {
+        todo: state.firestoreTodos.ordered.todos
+    };
+};
+
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    firestoreConnect([{ collection: "todos" }])
+)(TodoList);
